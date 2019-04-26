@@ -15,6 +15,24 @@ public class Start {
     private static char aktuelleRichtung = '^';
     private static int[] roverPosition = new int []{10 ,40 };
 
+    public static void main(String[] args) {
+
+        if (args.length > 1) {
+            long seed = Long.parseLong(args[1]);
+            r.setSeed(seed);
+        }
+
+        initField();
+        String eingabe = args[0];
+        drawOutput();
+
+        for (int i = 0; i < eingabe.length(); i++) {
+            moveRover(eingabe.charAt(i));
+            drawOutput();
+        }
+
+    }
+
     private static void initField() {
 
         mars = new char[zeilen][spalten];
@@ -48,22 +66,6 @@ public class Start {
         }
         System.out.println();
     }
-
-	public static void main(String[] args) {
-
-		if (args.length > 1) {
-			long seed = Long.parseLong(args[1]);
-			r.setSeed(seed);
-			// System.out.println("Seed: " + seed);
-		}
-		init();
-		String pg = args[0];
-		out();
-		for (int i = 0; i < pg.length(); i++) {
-			make(pg.charAt(i));
-			out();
-		}
-	}
 
     private static void moveRover(char eingabe){
 
