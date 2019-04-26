@@ -33,17 +33,6 @@ public class Start {
         mars[mitteZeilen][mitteSpalten]= '^';
     }
 
-	public static int[] maximum(Set<int[]> set) {
-		int[] x = new int[2];
-		for (int[] e : set) {
-			if (e[0] > x[0])
-				x[0] = e[0];
-			if (e[1] > x[1])
-				x[1] = e[1];
-		}
-		return x;
-	}
-
 	public static String get(Map<int[], String> kloetze, int[] p) {
 		Set<Entry<int[], String>> entrySet = kloetze.entrySet();
 		for (Entry<int[], String> entry : entrySet) {
