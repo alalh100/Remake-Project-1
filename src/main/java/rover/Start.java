@@ -65,50 +65,35 @@ public class Start {
 		}
 	}
 
-	public static void make(char c) {
-		if (c == 'f') {
-			int[] p = findeRover();
-			if (get(mars, p).equals("n"))
-				p[1]--;
-			else if (get(mars, p).equals("s"))
-				p[1]++;
-			else if (get(mars, p).equals("e"))
-				p[0]++;
-			else if (get(mars, p).equals("w"))
-				p[0]--;
-		} else if (c == 'b') {
-			int[] p = findeRover();
-			if (get(mars, p).equals("s"))
-				p[1]--;
-			else if (get(mars, p).equals("n"))
-				p[1]++;
-			else if (get(mars, p).equals("w"))
-				p[0]++;
-			else if (get(mars, p).equals("e"))
-				p[0]--;
-		} else if (c == 'l') {
-			int[] p = findeRover();
-			if (get(mars, p).equals("n"))
-				mars.put(p, "w");
-			else if (get(mars, p).equals("s"))
-				mars.put(p, "e");
-			else if (get(mars, p).equals("e"))
-				mars.put(p, "n");
-			else if (get(mars, p).equals("w"))
-				mars.put(p, "s");
-		} else if (c == 'r') {
-			int[] p = findeRover();
-			if (get(mars, p).equals("w"))
-				mars.put(p, "n");
-			else if (get(mars, p).equals("e"))
-				mars.put(p, "s");
-			else if (get(mars, p).equals("n"))
-				mars.put(p, "e");
-			else if (get(mars, p).equals("s"))
-				mars.put(p, "w");
-		}
+    private static void moveRover(char eingabe){
 
-	}
+        mars[roverPosition[0]][roverPosition[1]]=' ';
+
+        if (eingabe=='f'){
+            if      (aktuelleRichtung == '^' ) roverPosition[0]--;
+            else if (aktuelleRichtung == '<' ) roverPosition[1]--;
+            else if (aktuelleRichtung == 'v' ) roverPosition[0]++;
+            else if (aktuelleRichtung == '>' ) roverPosition[1]++;
+        }
+        else if ( eingabe == 'b'){
+            if      (aktuelleRichtung == '^' ) roverPosition[0]++;
+            else if (aktuelleRichtung == '<' ) roverPosition[1]++;
+            else if (aktuelleRichtung == 'v' ) roverPosition[0]--;
+            else if (aktuelleRichtung == '>' ) roverPosition[1]--;
+        }
+        else if(eingabe == 'l' ){
+            if      ( aktuelleRichtung =='^')  aktuelleRichtung = '<';
+            else if ( aktuelleRichtung == '<') aktuelleRichtung = 'v';
+            else if ( aktuelleRichtung == 'v') aktuelleRichtung = '>';
+            else if ( aktuelleRichtung == '>') aktuelleRichtung = '^';
+        }
+        else if(eingabe == 'r' ){
+            if      ( aktuelleRichtung =='^')  aktuelleRichtung = '>';
+            else if ( aktuelleRichtung == '<') aktuelleRichtung = '^';
+            else if ( aktuelleRichtung == 'v') aktuelleRichtung = '<';
+            else if ( aktuelleRichtung == '>') aktuelleRichtung = 'v';
+        }
+    }
 
 
 }
