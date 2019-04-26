@@ -1,14 +1,10 @@
 package rover;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
-import java.util.Set;
 
 public class Start {
 
-	static Random r = new Random();
+	private static Random r = new Random();
 	private static char[][] mars;
     private static int zeilen  = 20;
     private static int spalten = 80;
