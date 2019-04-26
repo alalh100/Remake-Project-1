@@ -32,12 +32,10 @@ public class Start {
     private static void initField() {
 
         mars = new char[zeilen][spalten];
-        int mitteZeilen  = zeilen/2;
-        int mitteSpalten = spalten/2;
 
         for (int i = 0; i < zeilen; i++) {
             for (int j = 0; j < spalten; j++) {
-                if (r.nextDouble() < 0.25 && !(mitteZeilen == i && mitteSpalten == j)) {
+                if (r.nextDouble() < 0.25 && !(roverPosition[0] == i && roverPosition[1] == j)) {
                     mars[i][j]= '#';
                 }else{
                     mars[i][j]= ' ';
