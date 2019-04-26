@@ -3,9 +3,8 @@ package rover;
 import java.util.Random;
 
 public class Start {
-
-	private static Random r = new Random();
-	private static char[][] mars;
+    private static Random r = new Random();
+    private static char[][] mars;
     private static int zeilen  = 20;
     private static int spalten = 80;
     private static char aktuelleRichtung = '^';
