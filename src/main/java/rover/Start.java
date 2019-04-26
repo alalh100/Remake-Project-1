@@ -66,18 +66,17 @@ public class Start {
     private static void moveRover(char eingabe){
 
         mars[roverPosition[0]][roverPosition[1]]=' ';
-
         if (eingabe=='f'){
-            if      (aktuelleRichtung == '^' ) roverPosition[0]--;
-            else if (aktuelleRichtung == '<' ) roverPosition[1]--;
-            else if (aktuelleRichtung == 'v' ) roverPosition[0]++;
-            else if (aktuelleRichtung == '>' ) roverPosition[1]++;
+            if      (aktuelleRichtung == '^' && checkDirection("up"   )) roverPosition[0]--;
+            else if (aktuelleRichtung == '<' && checkDirection("left" )) roverPosition[1]--;
+            else if (aktuelleRichtung == 'v' && checkDirection("down" )) roverPosition[0]++;
+            else if (aktuelleRichtung == '>' && checkDirection("right")) roverPosition[1]++;
         }
         else if ( eingabe == 'b'){
-            if      (aktuelleRichtung == '^' ) roverPosition[0]++;
-            else if (aktuelleRichtung == '<' ) roverPosition[1]++;
-            else if (aktuelleRichtung == 'v' ) roverPosition[0]--;
-            else if (aktuelleRichtung == '>' ) roverPosition[1]--;
+            if      (aktuelleRichtung == '^' && checkDirection("down" )) roverPosition[0]++;
+            else if (aktuelleRichtung == '<' && checkDirection("right")) roverPosition[1]++;
+            else if (aktuelleRichtung == 'v' && checkDirection("up"   )) roverPosition[0]--;
+            else if (aktuelleRichtung == '>' && checkDirection("left" )) roverPosition[1]--;
         }
         else if(eingabe == 'l' ){
             if      ( aktuelleRichtung =='^')  aktuelleRichtung = '<';
@@ -91,6 +90,23 @@ public class Start {
             else if ( aktuelleRichtung == 'v') aktuelleRichtung = '<';
             else if ( aktuelleRichtung == '>') aktuelleRichtung = 'v';
         }
+    }
+
+    private static boolean checkDirection(String richtung ){
+
+        if ( richtung == "left"){
+            return (mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
+        }
+        else if ( richtung == "right"){
+            return (mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
+        }
+        else if ( richtung =="up" ){
+            return (mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
+        }
+        else if ( richtung == "down"){
+            return (mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
+        }
+        return false;
     }
 
 
