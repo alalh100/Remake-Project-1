@@ -12,6 +12,8 @@ public class Start {
 	private static char[][] mars;
     private static int zeilen  = 20;
     private static int spalten = 80;
+    private static char aktuelleRichtung = '^';
+    private static int[] roverPosition = new int []{10 ,40 };
 
     private static void initField() {
 
@@ -148,13 +150,5 @@ public class Start {
 
 	}
 
-	private static int[] findeRover() {
-		Set<Entry<int[], String>> entrySet = mars.entrySet();
-		for (Entry<int[], String> entry : entrySet) {
-			if (entry.getValue() != null && !entry.getValue().equals("#"))
-				return entry.getKey();
-		}
-		throw new IllegalStateException("Rover missing in action");
-	}
 
 }
