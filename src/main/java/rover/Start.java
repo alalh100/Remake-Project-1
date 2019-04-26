@@ -44,7 +44,6 @@ public class Start {
                 }
             }
         }
-        mars[mitteZeilen][mitteSpalten]= '^';
     }
 
     private static void drawOutput() {
@@ -94,20 +93,21 @@ public class Start {
 
     private static boolean checkDirection(String richtung ){
 
+        int [] tempPosition = new int[] { roverPosition[0], roverPosition [1]};
+
         if ( richtung == "left"){
-            return (mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
+            return (tempPosition[1]-1 >= 0       && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
         }
         else if ( richtung == "right"){
-            return (mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
+            return (tempPosition[1]+1 <= spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
         }
         else if ( richtung =="up" ){
-            return (mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
+            return (tempPosition[0]-1 >= 0       && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
         }
         else if ( richtung == "down"){
-            return (mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
+            return (tempPosition[0]+1 <= zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
         }
         return false;
     }
-
 
 }
