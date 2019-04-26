@@ -9,7 +9,8 @@ import java.util.Set;
 public class Start {
 
 	static Random r = new Random();
-	static LinkedHashMap<int[], String> mars;
+	private static char[][] mars;
+
 
 	public static void init() {
 		mars = new LinkedHashMap<>();
