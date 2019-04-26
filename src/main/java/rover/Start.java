@@ -10,23 +10,26 @@ public class Start {
 
 	static Random r = new Random();
 	private static char[][] mars;
+    private static int zeilen  = 20;
+    private static int spalten = 80;
 
+    private static void initField() {
 
-	public static void init() {
-		mars = new LinkedHashMap<>();
-		int x = 80;
-		int y = 20;
-		int rx = x / 2;
-		int ry = y / 2;
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
-				int[] p = new int[] { i, j };
-				if (r.nextDouble() < 0.25 && !(rx == i && ry == j))
-					mars.put(p, "#");
-			}
-		}
-		mars.put(new int[] { rx, ry }, "n");
-	}
+        mars = new char[zeilen][spalten];
+        int mitteZeilen  = zeilen/2;
+        int mitteSpalten = spalten/2;
+
+        for (int i = 0; i < zeilen; i++) {
+            for (int j = 0; j < spalten; j++) {
+                if (r.nextDouble() < 0.25 && !(mitteZeilen == i && mitteSpalten == j)) {
+                    mars[i][j]= '#';
+                }else{
+                    mars[i][j]= ' ';
+                }
+            }
+        }
+        mars[mitteZeilen][mitteSpalten]= '^';
+    }
 
 	public static int[] maximum(Set<int[]> set) {
 		int[] x = new int[2];
