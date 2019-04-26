@@ -33,15 +33,6 @@ public class Start {
         mars[mitteZeilen][mitteSpalten]= '^';
     }
 
-	public static String get(Map<int[], String> kloetze, int[] p) {
-		Set<Entry<int[], String>> entrySet = kloetze.entrySet();
-		for (Entry<int[], String> entry : entrySet) {
-			if (entry.getKey()[0] == p[0] && entry.getKey()[1] == p[1])
-				return entry.getValue();
-		}
-		return null;
-	}
-
     private static void drawOutput() {
 
         mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
