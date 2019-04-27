@@ -93,16 +93,16 @@ public class Start {
         int [] tempPosition = new int[] { roverPosition[0], roverPosition [1]};
 
         if ( richtung == "left"){
-            return (tempPosition[1]-1 >= 0       && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
+            return (tempPosition[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
         }
         else if ( richtung == "right"){
-            return (tempPosition[1]+1 <= spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
+            return (tempPosition[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
         }
         else if ( richtung =="up" ){
-            return (tempPosition[0]-1 >= 0       && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
+            return (tempPosition[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
         }
         else if ( richtung == "down"){
-            return (tempPosition[0]+1 <= zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
+            return (tempPosition[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
         }
         return false;
     }
