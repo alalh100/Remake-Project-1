@@ -92,16 +92,16 @@ public class Start {
 
         int [] tempPosition = new int[] { roverPosition[0], roverPosition [1]};
 
-        if ( richtung == "left"){
+        if      ( richtung.equals("left") ){
             return (tempPosition[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
         }
-        else if ( richtung == "right"){
+        else if ( richtung.equals("right")){
             return (tempPosition[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
         }
-        else if ( richtung =="up" ){
+        else if ( richtung.equals("up")   ){
             return (tempPosition[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
         }
-        else if ( richtung == "down"){
+        else if ( richtung.equals("down") ){
             return (tempPosition[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
         }
         return false;
