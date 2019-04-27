@@ -44,7 +44,7 @@ public class Start {
     }
 
     private static void drawOutput() {
-
+        // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
         mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
 
         for (int j = 0; j < zeilen; j++) {
@@ -60,7 +60,7 @@ public class Start {
     }
 
     private static void moveRover(char eingabe){
-
+        // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
         mars[roverPosition[0]][roverPosition[1]]=' ';
         if (eingabe=='f'){
             if      (aktuelleRichtung == '^' && checkDirection("up"   )) roverPosition[0]--;
@@ -89,7 +89,7 @@ public class Start {
     }
 
     private static boolean checkDirection(String richtung ){
-
+        // Diese Variable tempPosition ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
         int [] tempPosition = new int[] { roverPosition[0], roverPosition [1]};
 
         if      ( richtung.equals("left") ){
