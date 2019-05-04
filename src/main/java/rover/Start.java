@@ -44,8 +44,6 @@ public class Start {
     }
 
     private static void drawOutput() {
-        // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
-        mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
 
         for (int j = 0; j < zeilen; j++) {
             for (int i = 0; i < spalten; i++) {
@@ -65,6 +63,9 @@ public class Start {
 
         turnRover(eingabe);         // nur falls nötig
         go(eingabe);
+
+        // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
+        mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
     }
 
     private static void  go(char richtung){
