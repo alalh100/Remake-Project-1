@@ -100,20 +100,20 @@ public class Start {
     }
 
     private static boolean checkDirection(String richtung ){
-        // Diese Variable Entdecker ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
-        int [] Entdecker = new int[] { roverPosition[0], roverPosition [1]};
+        // Diese Variable tempPos ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
+        int [] tempPos = new int[] { roverPosition[0], roverPosition [1]};
 
         if      ( richtung.equals("left") ){
-            return (Entdecker[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
+            return (tempPos[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
         }
         else if ( richtung.equals("right")){
-            return (Entdecker[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
+            return (tempPos[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
         }
         else if ( richtung.equals("up")   ){
-            return (Entdecker[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
+            return (tempPos[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
         }
         else if ( richtung.equals("down") ){
-            return (Entdecker[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
+            return (tempPos[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
         }
         return false;
     }
