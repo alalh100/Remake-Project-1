@@ -22,7 +22,7 @@ public class Start {
         drawOutput();
 
         for (int i = 0; i < eingabe.length(); i++) {
-            moveRover(eingabe.charAt(i));
+            readInstructions(eingabe.charAt(i));
             drawOutput();
         }
 
@@ -59,28 +59,39 @@ public class Start {
         System.out.println();
     }
 
-    private static void moveRover(char eingabe){
+    private static void readInstructions(char eingabe){
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
         mars[roverPosition[0]][roverPosition[1]]=' ';
-        if (eingabe=='f'){
+
+        turnRover(eingabe);         // nur falls nötig
+        go(eingabe);
+    }
+
+    private static void  go(char richtung){
+
+        if (richtung =='f'){
             if      (aktuelleRichtung == '^' && checkDirection("up"   )) roverPosition[0]--;
             else if (aktuelleRichtung == '<' && checkDirection("left" )) roverPosition[1]--;
             else if (aktuelleRichtung == 'v' && checkDirection("down" )) roverPosition[0]++;
             else if (aktuelleRichtung == '>' && checkDirection("right")) roverPosition[1]++;
         }
-        else if ( eingabe == 'b'){
+        else if ( richtung == 'b'){
             if      (aktuelleRichtung == '^' && checkDirection("down" )) roverPosition[0]++;
             else if (aktuelleRichtung == '<' && checkDirection("right")) roverPosition[1]++;
             else if (aktuelleRichtung == 'v' && checkDirection("up"   )) roverPosition[0]--;
             else if (aktuelleRichtung == '>' && checkDirection("left" )) roverPosition[1]--;
         }
-        else if(eingabe == 'l' ){
+    }
+
+    private static void turnRover( char richtung){
+
+        if(richtung == 'l' ){
             if      ( aktuelleRichtung =='^')  aktuelleRichtung = '<';
             else if ( aktuelleRichtung == '<') aktuelleRichtung = 'v';
             else if ( aktuelleRichtung == 'v') aktuelleRichtung = '>';
             else if ( aktuelleRichtung == '>') aktuelleRichtung = '^';
         }
-        else if(eingabe == 'r' ){
+        else if(richtung == 'r' ){
             if      ( aktuelleRichtung =='^')  aktuelleRichtung = '>';
             else if ( aktuelleRichtung == '<') aktuelleRichtung = '^';
             else if ( aktuelleRichtung == 'v') aktuelleRichtung = '<';
