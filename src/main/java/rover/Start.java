@@ -22,7 +22,7 @@ public class Start {
         drawOutput();
 
         for (int i = 0; i < eingabe.length(); i++) {
-            readInstructions(eingabe.charAt(i));
+            applyInstructions(eingabe.charAt(i));
             drawOutput();
         }
 
@@ -57,7 +57,7 @@ public class Start {
         System.out.println();
     }
 
-    private static void readInstructions(char eingabe){
+    private static void applyInstructions(char eingabe){
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
         mars[roverPosition[0]][roverPosition[1]]=' ';
 
