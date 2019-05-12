@@ -45,4 +45,12 @@ public class Rover {
         else if (richtung == 'v' ) position[0]--;
         else if (richtung == '>' ) position[1]--;
     }
+
+    public int[] getPosition(){
+        return position;
+    }
+
+    public char getDirection(){
+        return richtung;
+    }
 }
