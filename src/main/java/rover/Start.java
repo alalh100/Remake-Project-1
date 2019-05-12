@@ -3,10 +3,8 @@ package rover;
 import java.util.Random;
 
 public class Start {
-    private static Random r = new Random();
+    private static Random random = new Random();
     private static char[][] mars;
-    private static int zeilen  = 20;
-    private static int spalten = 80;
     private static char aktuelleRichtung = '^';
     private static int[] roverPosition = new int []{10 ,40 };
 
@@ -14,47 +12,18 @@ public class Start {
 
         if (args.length > 1) {
             long seed = Long.parseLong(args[1]);
-            r.setSeed(seed);
+            random.setSeed(seed);
         }
 
-        initField();
+        Field.initField(random);
         String eingabe = args[0];
-        drawOutput();
+        Field.drawField();
 
         for (int i = 0; i < eingabe.length(); i++) {
             applyInstructions(eingabe.charAt(i));
-            drawOutput();
+            Field.drawField();
         }
 
-    }
-
-    private static void initField() {
-
-        mars = new char[zeilen][spalten];
-
-        for (int i = 0; i < zeilen; i++) {
-            for (int j = 0; j < spalten; j++) {
-                if (r.nextDouble() < 0.25 && !(roverPosition[0] == i && roverPosition[1] == j)) {
-                    mars[i][j]= '#';
-                }else{
-                    mars[i][j]= ' ';
-                }
-            }
-        }
-    }
-
-    private static void drawOutput() {
-
-        for (int j = 0; j < zeilen; j++) {
-            for (int i = 0; i < spalten; i++) {
-                System.out.print(mars[j][i]);
-            }
-            System.out.println();
-        }
-        for(int i = 0; i < spalten; i++) {
-            System.out.print("=");
-        }
-        System.out.println();
     }
 
     private static void applyInstructions(char eingabe){
