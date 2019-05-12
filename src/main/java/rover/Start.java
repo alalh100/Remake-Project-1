@@ -33,34 +33,35 @@ public class Start {
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
         Field.deleteItem(roverPosition);
 
-        if      (eingabe == 'f' ) rover.goForward();
-        else if (eingabe == 'b' ) rover.goBackward();
-        else if (eingabe == 'l' ) rover.turnLeft();
-        else if (eingabe == 'r' ) rover.turnRight();
-
+        if      (eingabe == 'f' && checkDirection('f')) rover.goForward();
+        else if (eingabe == 'b' && checkDirection('b')) rover.goBackward();
+        else if (eingabe == 'l' )                                      rover.turnLeft();
+        else if (eingabe == 'r' )                                      rover.turnRight();
 
         // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
         Field.addItem(roverPosition, rover.getDirection() );
     }
 
-/*
-    private static boolean checkDirection(String richtung ){
-        // Diese Variable tempPos ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
-        int [] tempPos = new int[] { roverPosition[0], roverPosition [1]};
 
-        if      ( richtung.equals("left") ){
-            return (tempPos[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
+    private static boolean checkDirection(char movingDirection ){
+
+        int[] position = roverPosition;
+        char  richtung = rover.getDirection();
+
+        if      (movingDirection == 'f' ){
+            if      (richtung == '^') return Field.checkUp(position);
+            else if (richtung == '>') return Field.checkRight(position);
+            else if (richtung == 'v') return Field.checkDown(position);
+            else if (richtung == '<') return Field.checkLeft(position);
         }
-        else if ( richtung.equals("right")){
-            return (tempPos[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
+        else if (movingDirection == 'b' ){
+            if      (richtung == '^') return Field.checkDown(position);
+            else if (richtung == '>') return Field.checkLeft(position);
+            else if (richtung == 'v') return Field.checkUp(position);
+            else if (richtung == '<') return Field.checkRight(position);
         }
-        else if ( richtung.equals("up")   ){
-            return (tempPos[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
-        }
-        else if ( richtung.equals("down") ){
-            return (tempPos[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
-        }
+
         return false;
     }
-*/
+
 }
