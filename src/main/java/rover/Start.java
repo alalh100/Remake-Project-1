@@ -5,8 +5,9 @@ import java.util.Random;
 public class Start {
     private static Random random = new Random();
     private static char[][] mars;
-    private static char aktuelleRichtung = '^';
-    private static int[] roverPosition = new int []{10 ,40 };
+
+    private static Rover rover = new Rover(new int [] {10, 40} , '^');
+    private static int[] roverPosition = rover.getPosition();
 
     public static void main(String[] args) {
 
@@ -30,45 +31,17 @@ public class Start {
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
         mars[roverPosition[0]][roverPosition[1]]=' ';
 
-        turnRover(eingabe);         // nur falls nötig
-        go(eingabe);
+        if      (eingabe == 'f' ) rover.goForward();
+        else if (eingabe == 'b' ) rover.goBackward();
+        else if (eingabe == 'l' ) rover.turnLeft();
+        else if (eingabe == 'r' ) rover.turnRight();
+
 
         // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
-        mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
+        mars[roverPosition[0]][roverPosition[1]]= rover.getDirection();
     }
 
-    private static void  go(char richtung){
-
-        if (richtung =='f'){
-            if      (aktuelleRichtung == '^' && checkDirection("up"   )) roverPosition[0]--;
-            else if (aktuelleRichtung == '<' && checkDirection("left" )) roverPosition[1]--;
-            else if (aktuelleRichtung == 'v' && checkDirection("down" )) roverPosition[0]++;
-            else if (aktuelleRichtung == '>' && checkDirection("right")) roverPosition[1]++;
-        }
-        else if ( richtung == 'b'){
-            if      (aktuelleRichtung == '^' && checkDirection("down" )) roverPosition[0]++;
-            else if (aktuelleRichtung == '<' && checkDirection("right")) roverPosition[1]++;
-            else if (aktuelleRichtung == 'v' && checkDirection("up"   )) roverPosition[0]--;
-            else if (aktuelleRichtung == '>' && checkDirection("left" )) roverPosition[1]--;
-        }
-    }
-
-    private static void turnRover( char richtung){
-
-        if(richtung == 'l' ){
-            if      ( aktuelleRichtung =='^')  aktuelleRichtung = '<';
-            else if ( aktuelleRichtung == '<') aktuelleRichtung = 'v';
-            else if ( aktuelleRichtung == 'v') aktuelleRichtung = '>';
-            else if ( aktuelleRichtung == '>') aktuelleRichtung = '^';
-        }
-        else if(richtung == 'r' ){
-            if      ( aktuelleRichtung =='^')  aktuelleRichtung = '>';
-            else if ( aktuelleRichtung == '<') aktuelleRichtung = '^';
-            else if ( aktuelleRichtung == 'v') aktuelleRichtung = '<';
-            else if ( aktuelleRichtung == '>') aktuelleRichtung = 'v';
-        }
-    }
-
+/*
     private static boolean checkDirection(String richtung ){
         // Diese Variable tempPos ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
         int [] tempPos = new int[] { roverPosition[0], roverPosition [1]};
@@ -87,5 +60,5 @@ public class Start {
         }
         return false;
     }
-
+*/
 }
