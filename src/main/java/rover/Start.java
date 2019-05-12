@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Start {
     private static Random random = new Random();
-    private static char[][] mars;
-
     private static Rover rover = new Rover(new int [] {10, 40} , '^');
     private static int[] roverPosition = rover.getPosition();
 
@@ -29,7 +27,7 @@ public class Start {
 
     private static void applyInstructions(char eingabe){
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
-        mars[roverPosition[0]][roverPosition[1]]=' ';
+        Field.deleteItem(roverPosition);
 
         if      (eingabe == 'f' ) rover.goForward();
         else if (eingabe == 'b' ) rover.goBackward();
@@ -38,7 +36,7 @@ public class Start {
 
 
         // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
-        mars[roverPosition[0]][roverPosition[1]]= rover.getDirection();
+        Field.addItem(roverPosition, rover.getDirection() );
     }
 
 /*

@@ -36,4 +36,16 @@ public class Field {
         System.out.println();
     }
 
+    public static void deleteItem(int[] position){
+
+        mars[position[0]][position[1]]= ' ';
+    }
+
+    public static void addItem(int[] position, char item){
+
+        mars[position[0]][position[1]]= item;
+
+    }
+
+
 }
