@@ -3,6 +3,7 @@ package rover;
 import java.util.Random;
 
 public class Start {
+
     private static Random random = new Random();
     private static Rover rover = new Rover(new int [] {10, 40} , '^');
     private static int[] roverPosition = rover.getPosition();
@@ -15,7 +16,9 @@ public class Start {
         }
 
         Field.initField(random);
+
         String eingabe = args[0];
+        Field.addItem(roverPosition, rover.getDirection() );
         Field.drawField();
 
         for (int i = 0; i < eingabe.length(); i++) {
@@ -24,6 +27,7 @@ public class Start {
         }
 
     }
+
 
     private static void applyInstructions(char eingabe){
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
