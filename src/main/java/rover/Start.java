@@ -35,8 +35,8 @@ public class Start {
 
         if      (eingabe == 'f' && checkDirection('f')) rover.goForward();
         else if (eingabe == 'b' && checkDirection('b')) rover.goBackward();
-        else if (eingabe == 'l' )                                      rover.turnLeft();
-        else if (eingabe == 'r' )                                      rover.turnRight();
+        else if (eingabe == 'l' ) rover.turnLeft();
+        else if (eingabe == 'r' ) rover.turnRight();
 
         // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
         Field.addItem(roverPosition, rover.getDirection() );
