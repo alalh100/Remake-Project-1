@@ -22,7 +22,7 @@ public class Start {
         drawOutput();
 
         for (int i = 0; i < eingabe.length(); i++) {
-            moveRover(eingabe.charAt(i));
+            applyInstructions(eingabe.charAt(i));
             drawOutput();
         }
 
@@ -44,8 +44,6 @@ public class Start {
     }
 
     private static void drawOutput() {
-        // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
-        mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
 
         for (int j = 0; j < zeilen; j++) {
             for (int i = 0; i < spalten; i++) {
@@ -59,28 +57,42 @@ public class Start {
         System.out.println();
     }
 
-    private static void moveRover(char eingabe){
+    private static void applyInstructions(char eingabe){
         // Die nächste Zeile löscht die alte Position des Rovers, um mehrfache Ausgabe des Rovers zu verhindern.
         mars[roverPosition[0]][roverPosition[1]]=' ';
-        if (eingabe=='f'){
+
+        turnRover(eingabe);         // nur falls nötig
+        go(eingabe);
+
+        // Anpassung der Rover-Ausgabe auf dem Feld gemäß der aktuellen Richtung bzw. der aktuellen Position des Rovers
+        mars[roverPosition[0]][roverPosition[1]]= aktuelleRichtung;
+    }
+
+    private static void  go(char richtung){
+
+        if (richtung =='f'){
             if      (aktuelleRichtung == '^' && checkDirection("up"   )) roverPosition[0]--;
             else if (aktuelleRichtung == '<' && checkDirection("left" )) roverPosition[1]--;
             else if (aktuelleRichtung == 'v' && checkDirection("down" )) roverPosition[0]++;
             else if (aktuelleRichtung == '>' && checkDirection("right")) roverPosition[1]++;
         }
-        else if ( eingabe == 'b'){
+        else if ( richtung == 'b'){
             if      (aktuelleRichtung == '^' && checkDirection("down" )) roverPosition[0]++;
             else if (aktuelleRichtung == '<' && checkDirection("right")) roverPosition[1]++;
             else if (aktuelleRichtung == 'v' && checkDirection("up"   )) roverPosition[0]--;
             else if (aktuelleRichtung == '>' && checkDirection("left" )) roverPosition[1]--;
         }
-        else if(eingabe == 'l' ){
+    }
+
+    private static void turnRover( char richtung){
+
+        if(richtung == 'l' ){
             if      ( aktuelleRichtung =='^')  aktuelleRichtung = '<';
             else if ( aktuelleRichtung == '<') aktuelleRichtung = 'v';
             else if ( aktuelleRichtung == 'v') aktuelleRichtung = '>';
             else if ( aktuelleRichtung == '>') aktuelleRichtung = '^';
         }
-        else if(eingabe == 'r' ){
+        else if(richtung == 'r' ){
             if      ( aktuelleRichtung =='^')  aktuelleRichtung = '>';
             else if ( aktuelleRichtung == '<') aktuelleRichtung = '^';
             else if ( aktuelleRichtung == 'v') aktuelleRichtung = '<';
@@ -89,20 +101,20 @@ public class Start {
     }
 
     private static boolean checkDirection(String richtung ){
-        // Diese Variable Entdecker ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
-        int [] Entdecker = new int[] { roverPosition[0], roverPosition [1]};
+        // Diese Variable tempPos ist nur für Überprüfung des ArrayIndexOutOfBoundsException .
+        int [] tempPos = new int[] { roverPosition[0], roverPosition [1]};
 
         if      ( richtung.equals("left") ){
-            return (Entdecker[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
+            return (tempPos[1]-1 >= 0      && mars[ roverPosition[0] ][ roverPosition[1]-1] !='#');
         }
         else if ( richtung.equals("right")){
-            return (Entdecker[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
+            return (tempPos[1]+1 < spalten && mars[ roverPosition[0] ][ roverPosition[1]+1] !='#');
         }
         else if ( richtung.equals("up")   ){
-            return (Entdecker[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
+            return (tempPos[0]-1 >= 0      && mars[ roverPosition[0]-1 ][ roverPosition[1]] !='#');
         }
         else if ( richtung.equals("down") ){
-            return (Entdecker[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
+            return (tempPos[0]+1 < zeilen  && mars[ roverPosition[0]+1 ][ roverPosition[1]] !='#');
         }
         return false;
     }
