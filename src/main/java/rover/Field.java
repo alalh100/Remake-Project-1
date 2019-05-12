@@ -47,5 +47,25 @@ public class Field {
 
     }
 
+    // Die nächsten vier Methoden sicherstellen, dass ArrayIndexOutOfBoundsException vermieden wird und
+    // dass keine Hindernisse auf der gesuchten Seite stehen.
+
+    public static boolean checkLeft (int[] position){
+
+        return position [1]-1 >= 0    && mars[position[0]][position[1]-1] !='#';
+    }
+    public static boolean checkRight(int[] position){
+
+        return position [1]+1 < width && mars[position[0]][position[1]+1] !='#';
+    }
+    public static boolean checkUp(int[] position){
+
+        return position[0]-1 >=0      && mars[position[0]-1][position[1]] !='#';
+    }
+    public static boolean checkDown(int[] position){
+
+        return position[0]+1 < height && mars[position[0]+1][position[1]] !='#';
+    }
+
 
 }
