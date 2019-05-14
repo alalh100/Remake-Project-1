@@ -17,15 +17,21 @@ public class Start {
 
         Field.initField(random);
 
-        String eingabe = args[0];
         Field.addItem(roverPosition, rover.getDirection() );
         Field.drawField();
 
-        for (int i = 0; i < eingabe.length(); i++) {
-            applyInstructions(eingabe.charAt(i));
+        String eingabe = args[0];
+        readInput(eingabe);
+
+
+    }
+
+    private static void readInput(String input ){
+
+        for (int i = 0; i < input.length(); i++) {
+            applyInstructions(input.charAt(i));
             Field.drawField();
         }
-
     }
 
 

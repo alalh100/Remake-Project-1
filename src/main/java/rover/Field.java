@@ -67,5 +67,4 @@ public class Field {
         return position[0]+1 < height && mars[position[0]+1][position[1]] !='#';
     }
 
-
 }
